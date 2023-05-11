@@ -30,6 +30,15 @@ class DeviceController {
         
     }
 
+    async edit(req, res){
+        const {id, name, price} = req.body;
+        const device = await Device.findOne( {where: {id}})
+        device.update({
+         name: name, price: price
+        }).then((db) => res.json(db).status(200).end())
+        .catch(db => res.json(db).status(400).end())
+     }
+
     async getAll(req, res){
         let {brandId, typeId, limit, page} = req.query
         page = page || 1
@@ -61,6 +70,19 @@ class DeviceController {
         )
         return res.json(device)
     }
+
+    async delete(req, res){
+        const {id} = req.params;
+        Device.destroy({
+            where: {
+                id: id
+            },
+            force: true
+        }).then((db) => res.json(db).status(200).end())
+        .catch(db => res.json(db).status(400).end())
+    }
+
+   
 }
 
 module.exports = new DeviceController()

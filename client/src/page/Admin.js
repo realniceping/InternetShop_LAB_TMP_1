@@ -3,11 +3,13 @@ import { Button, Container } from "react-bootstrap";
 import CreateBrand from "../components/modals/CreateBrand";
 import CreateDevice from "../components/modals/CreateDevice";
 import CreateType from "../components/modals/CreateType";
+import { AdminProductList } from "../components/Products";
 
 const Admin = () => {
     const [brandVisible ,setBrandVisible] = useState(false)
     const [typeVisible ,setTypeVisible] = useState(false)
     const [deviceVisible ,setDeviceVisible] = useState(false)
+
     return(
     <div>
         <Container className="d-flex flex-column">
@@ -36,6 +38,7 @@ const Admin = () => {
         <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}></CreateType>
         <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)}></CreateBrand>
         <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)}></CreateDevice>
+        <AdminProductList/>
     </div>
     );
 };
